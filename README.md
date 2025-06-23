@@ -56,7 +56,7 @@
 
 ### Optional Enhancements
 
-- [ ] Local storage persistence
+- [x] Local storage persistence
 - [ ] Import/export functionality
 - [ ] Task priority levels
 - [ ] Subtasks or task dependencies
