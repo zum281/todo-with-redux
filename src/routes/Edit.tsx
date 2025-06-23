@@ -10,7 +10,7 @@ function Edit(params: { id: string }) {
   const [, navigate] = useLocation();
   const dispatch = useDispatch<AppDispatch>();
   const task = useSelector<RootState>((store) =>
-    store.tasks.tasks.find((task) => task.id === Number(params.id)),
+    store.tasks.tasks.find((task) => task.id === params.id),
   ) as Task | null;
 
   const submit = (formData: FormData) => {

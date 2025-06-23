@@ -12,7 +12,7 @@ export const tasksSlice = createSlice({
     add: (state, action: PayloadAction<Task>) => {
       state.tasks.push(action.payload);
     },
-    toggle: (state, action: PayloadAction<number>) => {
+    toggle: (state, action: PayloadAction<string>) => {
       const task = state.tasks.find((task) => task.id === action.payload);
       if (task) task.complete = !task.complete;
     },
@@ -23,7 +23,7 @@ export const tasksSlice = createSlice({
         task.description = action.payload.description;
       }
     },
-    remove: (state, action: PayloadAction<number>) => {
+    remove: (state, action: PayloadAction<string>) => {
       const task = state.tasks.find((task) => task.id === action.payload);
       if (task) {
         state.tasks = state.tasks.filter((task) => task.id !== action.payload);

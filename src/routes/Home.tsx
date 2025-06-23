@@ -15,10 +15,8 @@ function App() {
     const description = formData.get("task-description") as string | undefined;
     const dueDate = formData.get("task-duedate") as string | undefined;
 
-    const id = tasks[tasks.length - 1]?.id || 0;
-
     const newTask = {
-      id,
+      id: crypto.randomUUID(),
       title,
       description,
       complete: false,
@@ -28,9 +26,9 @@ function App() {
     dispatch(add(newTask));
   };
 
-  const toggleComplete = (id: number) => dispatch(toggle(id));
+  const toggleComplete = (id: string) => dispatch(toggle(id));
 
-  const deleteTask = (id: number) => dispatch(remove(id));
+  const deleteTask = (id: string) => dispatch(remove(id));
 
   return (
     <main>
