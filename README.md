@@ -6,9 +6,9 @@
 
 - [x] Add new tasks with title and description
 - [x] Mark tasks as complete/incomplete
-- [ ] Edit existing tasks
-- [ ] Delete tasks
-- [ ] Set due dates for tasks
+- [x] Edit existing tasks
+- [x] Delete tasks
+- [x] Set due dates for tasks
 
 ### Category System
 
