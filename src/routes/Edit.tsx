@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import "../App.css";
 import type { AppDispatch, RootState } from "../redux/store";
 import type { Task } from "../types";
 import { Link, useLocation } from "wouter";
@@ -23,7 +22,7 @@ function Edit(params: { id: string }) {
   };
 
   return (
-    <main>
+    <main className="p-6 max-w-2xl mx-auto">
       {!task && (
         <>
           <p>No task found with id {params.id}</p>
@@ -32,8 +31,8 @@ function Edit(params: { id: string }) {
       )}
       {!!task && (
         <>
-          <h1>Update task {task.title}</h1>
-          <TaskForm action={submit} sumbitLabel="Update task" />
+          <h1 className="text-2xl font-bold">Update task {task.title}</h1>
+          <TaskForm action={submit} sumbitLabel="Update task" task={task} />
         </>
       )}
     </main>

@@ -1,31 +1,55 @@
 import type { FC } from "react";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
+import { Button } from "../ui/button";
+import type { Task } from "@/types";
 
 export const TaskForm: FC<TaskFormProps> = ({
   action,
   sumbitLabel = "Add task",
+  task,
 }) => {
   return (
-    <form
-      action={action}
-      style={{
-        display: "grid",
-        justifyItems: "start",
-        gap: ".5rem",
-        fontSize: "1rem",
-      }}
-    >
-      <label htmlFor="task-title">Task title *</label>
-      <input type="text" id="task-title" name="task-title" required />
-      <label htmlFor="task-description">Task description </label>
-      <input type="text" id="task-description" name="task-description" />
-      <label htmlFor="task-duedate">Due date</label>
-      <input
-        type="date"
-        id="task-duedate"
-        name="task-duedate"
-        min={new Date().toISOString().split("T")[0]}
-      />
-      <input type="submit" value={sumbitLabel} />
+    <form action={action} className="space-y-4 py-6">
+      <div>
+        <Label htmlFor="task-title" className="mb-2">
+          Task title *
+        </Label>
+        <Input
+          type="text"
+          id="task-title"
+          name="task-title"
+          required
+          {...(!!task && { defaultValue: task.title })}
+        />
+      </div>
+      <div>
+        <Label htmlFor="task-description" className="mb-2">
+          Task description{" "}
+        </Label>
+        <Textarea
+          id="task-description"
+          name="task-description"
+          rows={12}
+          {...(!!task && { defaultValue: task.description })}
+        />
+      </div>
+      <div>
+        <Label htmlFor="task-duedate" className="mb-2">
+          Due date
+        </Label>
+        <Input
+          type="date"
+          id="task-duedate"
+          name="task-duedate"
+          min={new Date().toISOString().split("T")[0]}
+          {...(!!task && { defaultValue: task.dueDate })}
+        />
+      </div>
+      <Button type="submit" className="w-fit">
+        {sumbitLabel}
+      </Button>
     </form>
   );
 };
@@ -33,4 +57,5 @@ export const TaskForm: FC<TaskFormProps> = ({
 interface TaskFormProps {
   action: (data: FormData) => void;
   sumbitLabel?: string;
+  task?: Task;
 }
