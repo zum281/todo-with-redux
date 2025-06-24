@@ -13,6 +13,7 @@ import {
 } from "../ui/select";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/redux/store";
+import { CATEGORY_GENERAL } from "@/redux/categoriesSlice";
 
 export const TaskForm: FC<TaskFormProps> = ({
   action,
@@ -65,7 +66,7 @@ export const TaskForm: FC<TaskFormProps> = ({
         <Label htmlFor="task-category" className="mb-2">
           Category
         </Label>
-        <Select name="task-category">
+        <Select name="task-category" defaultValue={CATEGORY_GENERAL.id}>
           <SelectTrigger>
             <SelectValue placeholder="Select a category" />
           </SelectTrigger>

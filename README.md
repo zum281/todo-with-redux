@@ -15,7 +15,7 @@
 - [x] Create, edit, and delete categories
 - [x] Assign tasks to categories
 - [x] Each category should have a name and color
-- [ ] Default "General" category for uncategorized tasks
+- [x] Default "General" category for uncategorized tasks
 
 ### Filtering & Sorting
 

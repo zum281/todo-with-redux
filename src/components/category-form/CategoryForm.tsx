@@ -3,6 +3,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import type { Category } from "@/types";
+import { CATEGORY_GENERAL } from "@/redux/categoriesSlice";
 
 export const CategoryForm: FC<CategoryFormProps> = ({
   action,
@@ -33,6 +34,7 @@ export const CategoryForm: FC<CategoryFormProps> = ({
           name="category-color"
           className="max-w-32 cursor-pointer p-0"
           required
+          defaultValue={CATEGORY_GENERAL.color}
         />
       </div>
       <Button type="submit" className="w-fit">

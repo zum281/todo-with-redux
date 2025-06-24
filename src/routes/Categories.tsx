@@ -24,8 +24,6 @@ function Categories() {
     const name = formData.get("category-name") as string;
     const color = formData.get("category-color") as string;
 
-    console.log(color);
-
     const newCategory = {
       id: crypto.randomUUID(),
       name,

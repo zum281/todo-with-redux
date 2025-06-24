@@ -8,7 +8,7 @@ export const Navbar = () => {
         <li>
           <Link
             href="/"
-            className="hover:underline data-[active=true]:font-semibold"
+            className="hover:font-semibold data-[active=true]:font-semibold"
             data-active={location === ("/" as string)}
           >
             Tasks
@@ -17,7 +17,7 @@ export const Navbar = () => {
         <li>
           <Link
             href="/categories"
-            className="hover:underline data-[active=true]:font-semibold"
+            className="hover:font-semibold data-[active=true]:font-semibold"
             data-active={location === ("/categories" as string)}
           >
             Categories
