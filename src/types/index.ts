@@ -4,6 +4,7 @@ export type Task = {
   description?: string;
   complete: boolean;
   dueDate?: string;
+  category?: Category;
 };
 
 export type Category = {

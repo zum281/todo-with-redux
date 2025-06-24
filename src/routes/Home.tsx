@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove, toggle } from "../redux/tasksSlice";
 import type { AppDispatch, RootState } from "../redux/store";
-import type { Task } from "../types";
+import type { Category, Task } from "../types";
 import { Link } from "wouter";
 import { TaskForm } from "../components/task-form/TaskForm";
 import { Button } from "@/components/ui/button";
@@ -19,11 +19,17 @@ import {
 function App() {
   const dispatch = useDispatch<AppDispatch>();
   const tasks = useSelector<RootState>((store) => store.tasks.tasks) as Task[];
+  const categories = useSelector<RootState>(
+    (store) => store.categories.categories,
+  ) as Category[];
 
   const submit = (formData: FormData) => {
     const title = formData.get("task-title")! as string;
     const description = formData.get("task-description") as string | undefined;
     const dueDate = formData.get("task-duedate") as string | undefined;
+    const categoryId = formData.get("task-category") as string;
+
+    const category = categories.find((cat) => cat.id === categoryId);
 
     const newTask = {
       id: crypto.randomUUID(),
@@ -31,6 +37,7 @@ function App() {
       description,
       complete: false,
       dueDate,
+      category,
     };
 
     dispatch(add(newTask));
@@ -63,6 +70,11 @@ function App() {
                     {!!task.dueDate && (
                       <CardDescription>
                         Due date: {task.dueDate}
+                      </CardDescription>
+                    )}
+                    {!!task.category && (
+                      <CardDescription>
+                        Category: {task.category?.name}
                       </CardDescription>
                     )}
                     <CardAction>

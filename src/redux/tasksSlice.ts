@@ -21,6 +21,7 @@ export const tasksSlice = createSlice({
       if (task) {
         task.title = action.payload.title;
         task.description = action.payload.description;
+        task.category = action.payload.category;
       }
     },
     remove: (state, action: PayloadAction<string>) => {
