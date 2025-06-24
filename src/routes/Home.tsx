@@ -15,6 +15,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -48,7 +50,7 @@ function App() {
   const deleteTask = (id: string) => dispatch(remove(id));
 
   return (
-    <main className="p-6 max-w-2xl mx-auto">
+    <main className="p-6 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold">Add a new task</h1>
       <TaskForm action={submit} />
 
@@ -61,20 +63,24 @@ function App() {
       {!!tasks && tasks.length > 0 && (
         <section className="py-6 space-y-4">
           <h2 className="font-bold text-xl">All your tasks:</h2>
-          <ul>
+          <ul className="grid grid-cols-2 gap-4">
             {tasks.map((task) => (
               <li key={task.title}>
-                <Card>
+                <Card className="h-full">
                   <CardHeader>
                     <CardTitle>{task.title}</CardTitle>
-                    {!!task.dueDate && (
-                      <CardDescription>
-                        Due date: {task.dueDate}
-                      </CardDescription>
-                    )}
-                    {!!task.category && (
-                      <CardDescription>
-                        Category: {task.category?.name}
+                    {(!!task.dueDate || !!task.category) && (
+                      <CardDescription className="flex flex-wrap gap-1">
+                        {!!task.dueDate && (
+                          <span className="text-xs">
+                            Due {new Date(task.dueDate).toDateString()}
+                          </span>
+                        )}
+                        {!!task.category && (
+                          <Badge variant="secondary" className="-ml-2">
+                            {task.category?.name}
+                          </Badge>
+                        )}
                       </CardDescription>
                     )}
                     <CardAction>
@@ -87,9 +93,13 @@ function App() {
                       </Button>
                     </CardAction>
                   </CardHeader>
-                  {!!task.description && (
-                    <CardContent>{task.description}</CardContent>
-                  )}
+                  <CardContent className="grow h-16">
+                    {!!task.description && (
+                      <ScrollArea className="h-full">
+                        {task.description}
+                      </ScrollArea>
+                    )}
+                  </CardContent>
                   <CardFooter className="grid grid-cols-2 gap-4">
                     <Button onClick={() => toggleComplete(task.id)} size="sm">
                       {task.complete ? "Mark incomplete" : "Complete task"}

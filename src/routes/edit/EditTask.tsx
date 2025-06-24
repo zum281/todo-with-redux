@@ -29,7 +29,7 @@ function EditTask(params: { id: string }) {
   };
 
   return (
-    <main className="p-6 max-w-2xl mx-auto">
+    <main className="p-6 max-w-3xl mx-auto">
       {!task && (
         <>
           <p>No task found with id {params.id}</p>

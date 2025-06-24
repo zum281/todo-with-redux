@@ -4,7 +4,7 @@ export const Navbar = () => {
   const [location] = useLocation();
   return (
     <nav className="p-6 border-b">
-      <ul className="flex items-center  gap-6 max-w-2xl mx-auto px-6">
+      <ul className="flex items-center  gap-6 max-w-3xl mx-auto px-6">
         <li>
           <Link
             href="/"

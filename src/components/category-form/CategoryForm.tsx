@@ -23,6 +23,18 @@ export const CategoryForm: FC<CategoryFormProps> = ({
           {...(!!category && { defaultValue: category.name })}
         />
       </div>
+      <div>
+        <Label htmlFor="category-color" className="mb-2">
+          Category color*
+        </Label>
+        <Input
+          type="color"
+          id="category-color"
+          name="category-color"
+          className="max-w-32 cursor-pointer p-0"
+          required
+        />
+      </div>
       <Button type="submit" className="w-fit">
         {sumbitLabel}
       </Button>
