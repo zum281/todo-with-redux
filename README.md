@@ -12,7 +12,7 @@
 
 ### Category System
 
-- [ ] Create, edit, and delete categories
+- [x] Create, edit, and delete categories
 - [ ] Assign tasks to categories
 - [ ] Each category should have a name and color
 - [ ] Default "General" category for uncategorized tasks

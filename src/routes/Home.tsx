@@ -47,10 +47,12 @@ function App() {
 
       <Separator />
       {(!tasks || tasks.length === 0) && (
-        <p>Add a task to see it in this section!</p>
+        <p className="mt-6 text-center font-medium">
+          Add a task to see it in this section!
+        </p>
       )}
       {!!tasks && tasks.length > 0 && (
-        <section className="py-6">
+        <section className="py-6 space-y-4">
           <h2 className="font-bold text-xl">All your tasks:</h2>
           <ul>
             {tasks.map((task) => (
@@ -77,11 +79,11 @@ function App() {
                     <CardContent>{task.description}</CardContent>
                   )}
                   <CardFooter className="grid grid-cols-2 gap-4">
-                    <Button onClick={() => toggleComplete(task.id)}>
+                    <Button onClick={() => toggleComplete(task.id)} size="sm">
                       {task.complete ? "Mark incomplete" : "Complete task"}
                     </Button>
-                    <Button asChild variant="outline">
-                      <Link href={`/edit/${task.id}`}>Edit task</Link>
+                    <Button asChild variant="outline" size="sm">
+                      <Link href={`/edit/task/${task.id}`}>Edit task</Link>
                     </Button>
                   </CardFooter>
                 </Card>

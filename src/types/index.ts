@@ -5,3 +5,8 @@ export type Task = {
   complete: boolean;
   dueDate?: string;
 };
+
+export type Category = {
+  id: string;
+  name: string;
+};

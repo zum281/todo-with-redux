@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../redux/store";
-import type { Task } from "../types";
+import type { AppDispatch, RootState } from "../../redux/store";
+import type { Task } from "../../types";
 import { Link, useLocation } from "wouter";
-import { update } from "../redux/tasksSlice";
-import { TaskForm } from "../components/task-form/TaskForm";
+import { update } from "../../redux/tasksSlice";
+import { TaskForm } from "../../components/task-form/TaskForm";
 
-function Edit(params: { id: string }) {
+function EditTask(params: { id: string }) {
   const [, navigate] = useLocation();
   const dispatch = useDispatch<AppDispatch>();
   const task = useSelector<RootState>((store) =>
@@ -39,4 +39,4 @@ function Edit(params: { id: string }) {
   );
 }
 
-export default Edit;
+export default EditTask;
