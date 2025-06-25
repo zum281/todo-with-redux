@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { add, remove, toggle } from "../redux/tasksSlice";
+import { remove, toggle } from "../redux/tasksSlice";
 import type { AppDispatch, RootState } from "../redux/store";
-import type { Category, Task } from "../types";
+import type { Task } from "../types";
 import { Link } from "wouter";
-import { TaskForm } from "../components/task-form/TaskForm";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import {
   Card,
   CardAction,
@@ -21,44 +19,24 @@ import { Badge } from "@/components/ui/badge";
 function App() {
   const dispatch = useDispatch<AppDispatch>();
   const tasks = useSelector<RootState>((store) => store.tasks.tasks) as Task[];
-  const categories = useSelector<RootState>(
-    (store) => store.categories.categories,
-  ) as Category[];
-
-  const submit = (formData: FormData) => {
-    const title = formData.get("task-title")! as string;
-    const description = formData.get("task-description") as string | undefined;
-    const dueDate = formData.get("task-duedate") as string | undefined;
-    const categoryId = formData.get("task-category") as string;
-
-    const category = categories.find((cat) => cat.id === categoryId);
-
-    const newTask = {
-      id: crypto.randomUUID(),
-      title,
-      description,
-      complete: false,
-      dueDate,
-      category,
-    };
-
-    dispatch(add(newTask));
-  };
 
   const toggleComplete = (id: string) => dispatch(toggle(id));
 
   const deleteTask = (id: string) => dispatch(remove(id));
 
   return (
-    <main className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold">Add a new task</h1>
-      <TaskForm action={submit} />
+    <>
+      <h1 className="text-2xl font-bold mb-6">Manage your categories</h1>
 
-      <Separator />
       {(!tasks || tasks.length === 0) && (
-        <p className="mt-6 text-center font-medium">
-          Add a task to see it in this section!
-        </p>
+        <div className="space-y-2">
+          <p className="font-medium">
+            There are no tasks to display at this time.
+          </p>
+          <Button asChild>
+            <Link href="/add/task">Add a new task</Link>
+          </Button>
+        </div>
       )}
       {!!tasks && tasks.length > 0 && (
         <section className="py-6 space-y-4">
@@ -77,7 +55,7 @@ function App() {
                           </span>
                         )}
                         {!!task.category && (
-                          <Badge variant="secondary" className="-ml-2">
+                          <Badge variant="secondary" className="-ml-1">
                             {task.category?.name}
                           </Badge>
                         )}
@@ -114,7 +92,7 @@ function App() {
           </ul>
         </section>
       )}
-    </main>
+    </>
   );
 }
 

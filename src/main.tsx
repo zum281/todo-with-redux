@@ -9,6 +9,8 @@ import EditTask from "./routes/edit/EditTask.tsx";
 import Categories from "./routes/Categories.tsx";
 import EditCategory from "./routes/edit/EditCategory.tsx";
 import { Navbar } from "./components/navigation/Navbar.tsx";
+import AddCategory from "./routes/add/AddCategory.tsx";
+import AddTask from "./routes/add/AddTask.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -16,19 +18,24 @@ createRoot(document.getElementById("root")!).render(
       <header>
         <Navbar />
       </header>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/categories" component={Categories} />
+      <main className="p-6 max-w-3xl mx-auto">
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/categories" component={Categories} />
 
-        <Route path="/edit/task/:id">
-          {(params) => <EditTask id={params.id} />}
-        </Route>
-        <Route path="/edit/category/:id">
-          {(params) => <EditCategory id={params.id} />}
-        </Route>
+          <Route path="/add/task/" component={AddTask} />
+          <Route path="/add/category/" component={AddCategory} />
 
-        <Route>404: No such page!</Route>
-      </Switch>
+          <Route path="/edit/task/:id">
+            {(params) => <EditTask id={params.id} />}
+          </Route>
+          <Route path="/edit/category/:id">
+            {(params) => <EditCategory id={params.id} />}
+          </Route>
+
+          <Route>404: No such page!</Route>
+        </Switch>
+      </main>
     </ReduxProvider>
   </StrictMode>,
 );

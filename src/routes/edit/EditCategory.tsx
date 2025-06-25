@@ -21,7 +21,7 @@ function EditCategory(params: { id: string }) {
   };
 
   return (
-    <main className="p-6 max-w-3xl mx-auto">
+    <>
       {!category && (
         <>
           <p>No category found with id {params.id}</p>
@@ -38,7 +38,7 @@ function EditCategory(params: { id: string }) {
           />
         </>
       )}
-    </main>
+    </>
   );
 }
 

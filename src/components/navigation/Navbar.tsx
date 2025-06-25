@@ -1,29 +1,32 @@
-import { Link, useLocation } from "wouter";
+import { NavbarMenuItem } from "./NavbarMenuItem";
 
 export const Navbar = () => {
-  const [location] = useLocation();
   return (
     <nav className="p-6 border-b">
       <ul className="flex items-center  gap-6 max-w-3xl mx-auto px-6">
-        <li>
-          <Link
-            href="/"
-            className="hover:font-semibold data-[active=true]:font-semibold"
-            data-active={location === ("/" as string)}
-          >
-            Tasks
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/categories"
-            className="hover:font-semibold data-[active=true]:font-semibold"
-            data-active={location === ("/categories" as string)}
-          >
-            Categories
-          </Link>
-        </li>
+        {NAVIGATION_ITEMS.map((item) => (
+          <li key={item.label}>
+            <NavbarMenuItem {...item} />
+          </li>
+        ))}
       </ul>
     </nav>
   );
 };
+
+const NAVIGATION_ITEMS = [
+  {
+    label: "Tasks",
+    items: [
+      { label: "Manage tasks", href: "/" },
+      { label: "Add task", href: "/add/task" },
+    ],
+  },
+  {
+    label: "Categories",
+    items: [
+      { label: "Manage categories", href: "/categories" },
+      { label: "Add category", href: "/add/category" },
+    ],
+  },
+];
