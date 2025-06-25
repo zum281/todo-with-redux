@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6">Manage your categories</h1>
+      <h1 className="text-2xl font-bold mb-6">Manage your tasks</h1>
 
       {(!tasks || tasks.length === 0) && (
         <div className="space-y-2">
